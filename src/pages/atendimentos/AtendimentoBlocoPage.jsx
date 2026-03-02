@@ -46,6 +46,14 @@ function resolveSelectWithOutroToText(sel, outro, options) {
   return opt ? opt.label : "";
 }
 
+function scrollMainToTop() {
+  requestAnimationFrame(() => {
+    const el = document.querySelector("main.content"); // seu container que rola
+    if (el) el.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    else window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  });
+}
+
 /** ✅ NOVO: opções de desfecho + helper para data de hoje */
 const DESFECHO_OPCOES = [
   { key: "ALTA", label: "Alta" },
@@ -210,6 +218,8 @@ export default function AtendimentoBlocoPage() {
 
   useEffect(() => {
     if (!cfg) return;
+
+    scrollMainToTop();
 
     atendimentosApi
       .get(id)

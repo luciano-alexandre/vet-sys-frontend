@@ -1,6 +1,8 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { useState } from "react";
+import ScrollToTop from "./ScrollToTop";
+
 
 function MenuItem({ to, icon, children, collapsed }) {
   return (
@@ -73,6 +75,7 @@ export default function Layout() {
       </aside>
 
       <main className="content">
+        <ScrollToTop />
         <Outlet />
       </main>
     </div>
