@@ -91,7 +91,7 @@ function openPdfLikePrintWindow({ title, html }) {
   if (!win || !doc) {
     try {
       document.body.removeChild(iframe);
-    } catch {}
+    } catch { }
     alert("Não foi possível gerar o PDF (iframe indisponível).");
     return;
   }
@@ -152,7 +152,7 @@ function openPdfLikePrintWindow({ title, html }) {
       setTimeout(() => {
         try {
           document.body.removeChild(iframe);
-        } catch {}
+        } catch { }
       }, 1000);
     }
   }, 350);
@@ -278,16 +278,16 @@ export default function AtendimentoViewPage() {
         <h1><center>Responsável</center></h1><br />
         <div class="grid2">
           ${renderPairs([
-            ["Nome", responsavelNome],
-            ["Telefone", responsavelTelefone],
-            ["CPF", responsavelCpf],
-            ["Email", responsavelEmail],
-            ["Município/UF", `${cidade || "—"} / ${estado || "—"}`],
-            ["Logradouro", `${logradouro || "—"}, ${numero || "—"}`],
-            ["Bairro", bairro],
-            ["CEP", cep],
-            ["Complemento", complemento]
-          ])}
+      ["Nome", responsavelNome],
+      ["Telefone", responsavelTelefone],
+      ["CPF", responsavelCpf],
+      ["Email", responsavelEmail],
+      ["Município/UF", `${cidade || "—"} / ${estado || "—"}`],
+      ["Logradouro", `${logradouro || "—"}, ${numero || "—"}`],
+      ["Bairro", bairro],
+      ["CEP", cep],
+      ["Complemento", complemento]
+    ])}
         </div>
       </div>
 
@@ -295,20 +295,20 @@ export default function AtendimentoViewPage() {
         <h1><center>Animal</center></h1><br />
         <div class="grid2">
           ${renderPairs([
-            ["Nome", animalNome],
-            ["Espécie", especie],
-            ["Raça", raca],
-            ["RG", rg],
-            ["Sexo", sexo],
-            ["Idade (texto)", idadeTexto],
-            ["Status reprodutivo", statusReprodutivo],
-            ["Tempo prenhez (meses)", tempoPrenhezMeses !== "" ? String(tempoPrenhezMeses) : ""],
-            ["Valor estimado", fmtMoneyBRL(valorEstimado)],
-            ["Brinco", identificacaoBrinco],
-            ["Microchip", microchip],
-            ["Pelagem", pelagem],
-            ["Peso base (kg)", fmtNumber(pesoBaseKg, 2)]
-          ])}
+      ["Nome", animalNome],
+      ["Espécie", especie],
+      ["Raça", raca],
+      ["RG", rg],
+      ["Sexo", sexo],
+      ["Idade (texto)", idadeTexto],
+      ["Status reprodutivo", statusReprodutivo],
+      ["Tempo prenhez (meses)", tempoPrenhezMeses !== "" ? String(tempoPrenhezMeses) : ""],
+      ["Valor estimado", fmtMoneyBRL(valorEstimado)],
+      ["Brinco", identificacaoBrinco],
+      ["Microchip", microchip],
+      ["Pelagem", pelagem],
+      ["Peso base (kg)", fmtNumber(pesoBaseKg, 2)]
+    ])}
         </div>
       </div>
 
@@ -316,19 +316,19 @@ export default function AtendimentoViewPage() {
         <h1><center>Atendimento</center></h1><br />
         <div class="grid2">
           ${renderPairs([
-            ["Data", fmtDateTime(a.data_atendimento)],
-            ["Veterinário", `${veterinarioNome || "—"} (${veterinarioCrmv || "—"})`],
-            ["Email veterinário", veterinarioEmail],
-            ["Telefone veterinário", veterinarioTelefone],
-            ["Responsável pelas informações", a.responsavel_informacoes_nome],
-            ["Tempo de posse/cuida", a.tempo_posse_cuida],
-            ["Frequência de cuidados", a.frequencia_cuidados],
-            ["Duração da doença", a.duracao_doenca],
-            ["Quem indicou", a.quem_indicou],
-            ["Houve melhora", a.houve_melhora],
-            ["Doença pregressa", a.doenca_pregressa],
-            ["Distância HV (km)", a.distancia_hv_km]
-          ])}
+      ["Data", fmtDateTime(a.data_atendimento)],
+      ["Veterinário", `${veterinarioNome || "—"} (${veterinarioCrmv || "—"})`],
+      ["Email veterinário", veterinarioEmail],
+      ["Telefone veterinário", veterinarioTelefone],
+      ["Responsável pelas informações", a.responsavel_informacoes_nome],
+      ["Tempo de posse/cuida", a.tempo_posse_cuida],
+      ["Frequência de cuidados", a.frequencia_cuidados],
+      ["Duração da doença", a.duracao_doenca],
+      ["Quem indicou", a.quem_indicou],
+      ["Houve melhora", a.houve_melhora],
+      ["Doença pregressa", a.doenca_pregressa],
+      ["Distância HV (km)", a.distancia_hv_km]
+    ])}
         </div>
         ${renderTextarea("Histórico da doença", a.historico_doenca)}
         ${renderTextarea("Tratamento realizado", a.tratamento_realizado)}
@@ -341,137 +341,160 @@ export default function AtendimentoViewPage() {
         <div class="block-title"><h2><center>Manejo Sanitário</center></h2></div><br />
         <div class="grid2">
           ${renderPairs([
-            ["Vacinação realizada", fmtYesNo(ms.vacinacao_realiza)],
-            ["Vacinação tipo/marca", ms.vacinacao_tipo_marca],
-            ["Vacinação frequência", ms.vacinacao_frequencia],
-            ["Vermifugação realizada", fmtYesNo(ms.vermifugacao_realiza)],
-            ["Vermifugação tipo/marca", ms.vermifugacao_tipo_marca],
-            ["Vermifugação frequência", ms.vermifugacao_frequencia],
-            ["Controle ectoparasitas realizado", fmtYesNo(ms.controle_ectoparasitas_realiza)],
-            ["Controle ectoparasitas tipo/marca", ms.controle_ectoparasitas_tipo],
-            ["Controle ectoparasitas frequência", ms.controle_ectoparasitas_freq]
-          ])}
+      ["Vacinação realizada", fmtYesNo(ms.vacinacao_realiza)],
+      ["Vacinação tipo/marca", ms.vacinacao_tipo_marca],
+      ["Vacinação frequência", ms.vacinacao_frequencia],
+      ["Vermifugação realizada", fmtYesNo(ms.vermifugacao_realiza)],
+      ["Vermifugação tipo/marca", ms.vermifugacao_tipo_marca],
+      ["Vermifugação frequência", ms.vermifugacao_frequencia],
+      ["Controle ectoparasitas realizado", fmtYesNo(ms.controle_ectoparasitas_realiza)],
+      ["Controle ectoparasitas tipo/marca", ms.controle_ectoparasitas_tipo],
+      ["Controle ectoparasitas frequência", ms.controle_ectoparasitas_freq]
+    ])}
         </div>
         ${renderTextarea("Comentários", ms.comentarios)}
         <div class="hr"></div>
+<div class="block-title"><h2><center>Manejo Nutricional</center></h2></div><br />
 
-        <div class="block-title"><h2><center>Manejo Nutricional</center></h2></div><br />
-        <div class="grid2">
-          ${renderPairs([
-            ["Concentrado ofertas/dia", mn.concentrado_ofertas_dia],
-            ["Concentrado peso oferta kg", mn.concentrado_peso_oferta_kg],
-            ["Volumoso peso kg", mn.volumoso_peso_kg],
-            ["Volumoso ofertas/dia", mn.volumoso_ofertas_dia],
-            ["Oferta sal", fmtYesNo(mn.oferta_sal)],
-            ["Tipo de sal", mn.sal_tipo],
-            ["Quantidade de sal", mn.sal_quantidade],
-            ["Oferta suplemento", fmtYesNo(mn.oferta_suplemento)],
-            ["Tipo de suplemento", mn.suplemento_tipo],
-            ["Quantidade de suplemento", mn.suplemento_quantidade],
-            ["Fornecimento de água", mn.agua_fornecimento === "OUTRO" ? `Outro: ${mn.agua_fornecimento_outro || ""}` : mn.agua_fornecimento],
-            ["Qualidade da água", mn.agua_qualidade === "OUTRO" ? `Outro: ${mn.agua_qualidade_outro || ""}` : mn.agua_qualidade]
-          ])}
-        </div>
+<!-- 1) Concentrado (linhas) -->
+<div class="grid2">
+  ${renderPairs([
+      ["Concentrado ofertas/dia", mn.concentrado_ofertas_dia],
+      ["Concentrado peso oferta kg", mn.concentrado_peso_oferta_kg]
+    ])}
+</div>
 
-        <div style="margin-top:10px">
-          <div class="block-title" style="font-size:12px">Composição do Concentrado (%)</div>
-          ${
-            conc.length
-              ? `<table>
-                  <thead><tr><th>Tipo</th><th>Outro (descrição)</th><th>Marca</th><th>Percentual (%)</th></tr></thead>
-                  <tbody>
-                    ${conc
-                      .map(
-                        (x) => `<tr>
-                          <td>${td(pick(x, "tipo"))}</td>
-                          <td>${td(pick(x, "outro_descricao"))}</td>
-                          <td>${td(pick(x, "marca"))}</td>
-                          <td>${td(pick(x, "percentual"))}</td>
-                        </tr>`
-                      )
-                      .join("")}
-                  </tbody>
-                </table>`
-              : `<div class="muted">Nenhum item.</div>`
-          }
-        </div>
+<!-- 2) Tabela do Concentrado -->
+<div style="margin-top:10px">
+  <div class="block-title" style="font-size:12px">Composição do Concentrado (%)</div>
+  ${conc.length
+        ? `<table>
+          <thead><tr><th>Tipo</th><th>Outro (descrição)</th><th>Marca</th><th>Percentual (%)</th></tr></thead>
+          <tbody>
+            ${conc
+          .map(
+            (x) => `<tr>
+                  <td>${td(pick(x, "tipo"))}</td>
+                  <td>${td(pick(x, "outro_descricao"))}</td>
+                  <td>${td(pick(x, "marca"))}</td>
+                  <td>${td(pick(x, "percentual"))}</td>
+                </tr>`
+          )
+          .join("")}
+          </tbody>
+        </table>`
+        : `<div class="muted">Nenhum item.</div>`
+      }
+</div>
 
-        <div style="margin-top:10px">
-          <div class="block-title" style="font-size:12px">Composição do Volumoso (%)</div>
-          ${
-            vol.length
-              ? `<table>
-                  <thead><tr><th>Tipo</th><th>Outro (descrição)</th><th>Forma</th><th>Forma (outro)</th><th>Estágio</th><th>Percentual (%)</th></tr></thead>
-                  <tbody>
-                    ${vol
-                      .map(
-                        (x) => `<tr>
-                          <td>${td(pick(x, "tipo"))}</td>
-                          <td>${td(pick(x, "outro_descricao"))}</td>
-                          <td>${td(pick(x, "forma"))}</td>
-                          <td>${td(pick(x, "forma_outro"))}</td>
-                          <td>${td(pick(x, "estagio"))}</td>
-                          <td>${td(pick(x, "percentual"))}</td>
-                        </tr>`
-                      )
-                      .join("")}
-                  </tbody>
-                </table>`
-              : `<div class="muted">Nenhum item.</div>`
-          }
-        </div>
+<!-- 3) Volumoso (linhas) -->
+<div class="grid2" style="margin-top:10px">
+  ${renderPairs([
+        ["Volumoso peso kg", mn.volumoso_peso_kg],
+        ["Volumoso ofertas/dia", mn.volumoso_ofertas_dia]
+      ])}
+</div>
 
-        ${renderTextarea("Comentários", mn.comentarios)}
-        <div class="hr"></div>
+<!-- 4) Tabela do Volumoso -->
+<div style="margin-top:10px">
+  <div class="block-title" style="font-size:12px">Composição do Volumoso (%)</div>
+  ${vol.length
+        ? `<table>
+          <thead><tr><th>Tipo</th><th>Outro (descrição)</th><th>Forma</th><th>Forma (outro)</th><th>Estágio</th><th>Percentual (%)</th></tr></thead>
+          <tbody>
+            ${vol
+          .map(
+            (x) => `<tr>
+                  <td>${td(pick(x, "tipo"))}</td>
+                  <td>${td(pick(x, "outro_descricao"))}</td>
+                  <td>${td(pick(x, "forma"))}</td>
+                  <td>${td(pick(x, "forma_outro"))}</td>
+                  <td>${td(pick(x, "estagio"))}</td>
+                  <td>${td(pick(x, "percentual"))}</td>
+                </tr>`
+          )
+          .join("")}
+          </tbody>
+        </table>`
+        : `<div class="muted">Nenhum item.</div>`
+      }
+</div>
+
+<!-- 5) Restante -->
+<div class="grid2" style="margin-top:10px">
+  ${renderPairs([
+        ["Oferta sal", fmtYesNo(mn.oferta_sal)],
+        ["Tipo de sal", mn.sal_tipo],
+        ["Quantidade de sal", mn.sal_quantidade],
+        ["Oferta suplemento", fmtYesNo(mn.oferta_suplemento)],
+        ["Tipo de suplemento", mn.suplemento_tipo],
+        ["Quantidade de suplemento", mn.suplemento_quantidade],
+        [
+          "Fornecimento de água",
+          mn.agua_fornecimento === "OUTRO"
+            ? `Outro: ${mn.agua_fornecimento_outro || ""}`
+            : mn.agua_fornecimento
+        ],
+        [
+          "Qualidade da água",
+          mn.agua_qualidade === "OUTRO"
+            ? `Outro: ${mn.agua_qualidade_outro || ""}`
+            : mn.agua_qualidade
+        ]
+      ])}
+</div>
+
+${renderTextarea("Comentários", mn.comentarios)}
+<div class="hr"></div>
 
         <div class="block-title"><h2><center>Ambiente / Epidemiologia</center></h2></div><br />
         <div class="grid2">
           ${renderPairs([
-            ["Tipo de Baia", pick(ae, "baia_tipo_construcao")],
-            ["Cama", pick(ae, "cama")],
-            ["Ventilação", pick(ae, "ventilacao")],
-            ["Nº animais mesma espécie", pick(ae, "n_animais_mesma_especie")],
-            ["Morreu algum", fmtYesNo(pick(ae, "morreu_algum"))],
-            ["Comentário morreu algum", pick(ae, "morreu_algum_comentario")],
-            ["Caso na vizinhança", fmtYesNo(pick(ae, "algum_caso_vizinhanca"))],
-            ["Comentário caso vizinhança", pick(ae, "algum_caso_vizinhanca_comentario")],
-            ["Contato outras espécies", fmtYesNo(pick(ae, "contato_outras_especies"))],
-            ["Comentário contato outras espécies", pick(ae, "contato_outras_especies_comentario")],
-            ["Diferença faixa etária", pick(ae, "diferenca_faixa_etaria")],
-            ["Uso veneno/adubo no pasto", fmtYesNo(pick(ae, "usou_veneno_adubo_pasto"))],
-            ["Comentário veneno/adubo", pick(ae, "usou_veneno_adubo_pasto_comentario")],
-            ["Higiene geral", pick(ae, "higiene_geral")],
-            ["Tamanho/Área", pick(ae, "tamanho_area")],
-            ["Sistema criação extensivo (%)", pick(ae, "sistema_criacao_extensivo_pct")],
-            ["Sistema criação intensivo (%)", pick(ae, "sistema_criacao_intensivo_pct")]
-          ])}
+        ["Tipo de Baia", pick(ae, "baia_tipo_construcao")],
+        ["Cama", pick(ae, "cama")],
+        ["Ventilação", pick(ae, "ventilacao")],
+        ["Nº animais mesma espécie", pick(ae, "n_animais_mesma_especie")],
+        ["Morreu algum", fmtYesNo(pick(ae, "morreu_algum"))],
+        ["Comentário morreu algum", pick(ae, "morreu_algum_comentario")],
+        ["Caso na vizinhança", fmtYesNo(pick(ae, "algum_caso_vizinhanca"))],
+        ["Comentário caso vizinhança", pick(ae, "algum_caso_vizinhanca_comentario")],
+        ["Contato outras espécies", fmtYesNo(pick(ae, "contato_outras_especies"))],
+        ["Comentário contato outras espécies", pick(ae, "contato_outras_especies_comentario")],
+        ["Diferença faixa etária", pick(ae, "diferenca_faixa_etaria")],
+        ["Uso veneno/adubo no pasto", fmtYesNo(pick(ae, "usou_veneno_adubo_pasto"))],
+        ["Comentário veneno/adubo", pick(ae, "usou_veneno_adubo_pasto_comentario")],
+        ["Higiene geral", pick(ae, "higiene_geral")],
+        ["Tamanho/Área", pick(ae, "tamanho_area")],
+        ["Sistema criação extensivo (%)", pick(ae, "sistema_criacao_extensivo_pct")],
+        ["Sistema criação intensivo (%)", pick(ae, "sistema_criacao_intensivo_pct")]
+      ])}
         </div>
         ${renderTextarea("Comentários", pick(ae, "comentarios"))}
         <div class="hr"></div>
         <div class="block-title"><h2><center>Exame Físico</center></h2></div><br />
         <div class="grid2">
           ${renderPairs([
-            ["Estado nutricional", ef.estado_nutricional],
-            ["Desidratação", ef.desidratacao],
-            ["Mucosa", ef.mucosa],
-            ["TPC (segundos)", ef.tpc_segundos],
-            ["Conduta/comportamento", ef.conduta_comportamento],
-            ["Atitude/postura", ef.atitude_postura],
-            ["Pulso digital", ef.pulso_digital],
-            ["Temperatura (°C)", ef.temperatura_c],
-            ["FC (bpm)", ef.fc_bpm],
-            ["FR (mpm)", ef.fr_mpm],
-            ["Mov. intestinais/rumen", ef.movimentos_intestinais_rumen],
-            ["Grau de dor", ef.grau_dor],
-            ["Sistema acometido (tegumentar)", fmtYesNo(ef.sistema_acometido_tegumentar)],
-            ["Sistema acometido (digestório)", fmtYesNo(ef.sistema_acometido_digestorio)],
-            ["Sistema acometido (respiratório)", fmtYesNo(ef.sistema_acometido_respiratorio)],
-            ["Sistema acometido (locomotor)", fmtYesNo(ef.sistema_acometido_locomotor)],
-            ["Sistema acometido (nervoso)", fmtYesNo(ef.sistema_acometido_nervoso)],
-            ["Sistema acometido (urogenital)", fmtYesNo(ef.sistema_acometido_urogenital)],
-            ["Sistema acometido (outro)", fmtYesNo(ef.sistema_acometido_outro)],
-            ["Outro (descrição)", ef.sistema_acometido_outro_desc]
-          ])}
+        ["Estado nutricional", ef.estado_nutricional],
+        ["Desidratação", ef.desidratacao],
+        ["Mucosa", ef.mucosa],
+        ["TPC (segundos)", ef.tpc_segundos],
+        ["Conduta/comportamento", ef.conduta_comportamento],
+        ["Atitude/postura", ef.atitude_postura],
+        ["Pulso digital", ef.pulso_digital],
+        ["Temperatura (°C)", ef.temperatura_c],
+        ["FC (bpm)", ef.fc_bpm],
+        ["FR (mpm)", ef.fr_mpm],
+        ["Mov. intestinais/rumen", ef.movimentos_intestinais_rumen],
+        ["Grau de dor", ef.grau_dor],
+        ["Sistema acometido (tegumentar)", fmtYesNo(ef.sistema_acometido_tegumentar)],
+        ["Sistema acometido (digestório)", fmtYesNo(ef.sistema_acometido_digestorio)],
+        ["Sistema acometido (respiratório)", fmtYesNo(ef.sistema_acometido_respiratorio)],
+        ["Sistema acometido (locomotor)", fmtYesNo(ef.sistema_acometido_locomotor)],
+        ["Sistema acometido (nervoso)", fmtYesNo(ef.sistema_acometido_nervoso)],
+        ["Sistema acometido (urogenital)", fmtYesNo(ef.sistema_acometido_urogenital)],
+        ["Sistema acometido (outro)", fmtYesNo(ef.sistema_acometido_outro)],
+        ["Outro (descrição)", ef.sistema_acometido_outro_desc]
+      ])}
         </div>
         ${renderTextarea("Anormalidades", ef.anormalidades)}
         <div class="hr"></div>
@@ -479,14 +502,14 @@ export default function AtendimentoViewPage() {
         <div class="block-title"><h2><center>Exames Complementares</center></h2></div><br />
         <div class="grid2">
           ${renderPairs([
-            ["Hemograma", ec.hemograma],
-            ["Bioquímica", ec.bioquimica],
-            ["Imagem", ec.imagem],
-            ["Cultura", ec.cultura],
-            ["Histopatológico", ec.histopatologico],
-            ["Necropsia", ec.necropsia],
-            ["OPG", ec.opg]
-          ])}
+        ["Hemograma", ec.hemograma],
+        ["Bioquímica", ec.bioquimica],
+        ["Imagem", ec.imagem],
+        ["Cultura", ec.cultura],
+        ["Histopatológico", ec.histopatologico],
+        ["Necropsia", ec.necropsia],
+        ["OPG", ec.opg]
+      ])}
         </div>
         ${renderTextarea("Outros", ec.outros)}
         ${renderTextarea("Comentários", ec.comentarios)}
@@ -495,51 +518,49 @@ export default function AtendimentoViewPage() {
         <div class="block-title"><h2><center>Conduta</center></h2></div><br />
         <div class="grid2">
           ${renderPairs([
-            ["Tipo do diagnóstico", c.diagnostico_tipo],
-            ["Diagnóstico", c.diagnostico],
-            ["Prognóstico de vida", c.prognostico_vida],
-            ["Prognóstico de função", c.prognostico_funcao]
-          ])}
+        ["Tipo do diagnóstico", c.diagnostico_tipo],
+        ["Diagnóstico", c.diagnostico],
+        ["Prognóstico de vida", c.prognostico_vida],
+        ["Prognóstico de função", c.prognostico_funcao]
+      ])}
         </div>
         ${renderTextarea("Tratamento", c.tratamento)}
 
         <div style="margin-top:10px">
           <div class="block-title" style="font-size:12px">Desfechos</div>
-          ${
-            desfechosMarcados.length
-              ? `<table>
+          ${desfechosMarcados.length
+        ? `<table>
                   <thead><tr><th>Opção</th><th>Data</th><th>Comentário</th></tr></thead>
                   <tbody>
                     ${desfechosMarcados
-                      .map(
-                        (x) => `<tr>
+          .map(
+            (x) => `<tr>
                           <td>${td(x.key)}</td>
                           <td>${td(x.data)}</td>
                           <td>${td(x.comentario)}</td>
                         </tr>`
-                      )
-                      .join("")}
+          )
+          .join("")}
                   </tbody>
                 </table>`
-              : `<div class="muted">Nenhum desfecho marcado.</div>`
-          }
+        : `<div class="muted">Nenhum desfecho marcado.</div>`
+      }
         </div>
       </div>
 
       <div class="section">
         <h2><center>Participantes</center></h2><br />
-        ${
-          participantes.length
-            ? `<table>
+        ${participantes.length
+        ? `<table>
                 <thead><tr><th>Nome</th><th>Papel</th></tr></thead>
                 <tbody>
                   ${participantes
-                    .map((p) => `<tr><td>${td(p.nome)}</td><td>${td(p.papel)}</td></tr>`)
-                    .join("")}
+          .map((p) => `<tr><td>${td(p.nome)}</td><td>${td(p.papel)}</td></tr>`)
+          .join("")}
                 </tbody>
               </table>`
-            : `<div class="muted">Nenhum participante cadastrado.</div>`
-        }
+        : `<div class="muted">Nenhum participante cadastrado.</div>`
+      }
       </div>
     `;
 
