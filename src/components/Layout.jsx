@@ -48,7 +48,7 @@ export default function Layout() {
           <MenuItem to="/" icon="🏠" collapsed={collapsed}>Dashboard</MenuItem>
           {isAdmin && <MenuItem to="/usuarios" icon="👤" collapsed={collapsed}>Usuários</MenuItem>}
           <MenuItem to="/responsaveis" icon="🧑‍🤝‍🧑" collapsed={collapsed}>Responsáveis</MenuItem>
-          <MenuItem to="/animais" icon="🐶" collapsed={collapsed}>Animais</MenuItem>
+          <MenuItem to="/animais" icon="🐴" collapsed={collapsed}>Animais</MenuItem>
           <MenuItem to="/atendimentos" icon="🩺" collapsed={collapsed}>Atendimentos</MenuItem>
         </nav>
 
