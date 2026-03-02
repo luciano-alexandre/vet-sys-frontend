@@ -12,8 +12,13 @@ export const usersApi = {
   get: (id) => request(`/api/usuarios/${id}`),
   create: (payload) => request("/api/usuarios", { method: "POST", body: JSON.stringify(payload) }),
   update: (id, payload) => request(`/api/usuarios/${id}`, { method: "PUT", body: JSON.stringify(payload) }),
-  updatePassword: (id, payload) => request(`/api/usuarios/${id}/password`, { method: "PUT", body: JSON.stringify(payload) }),
-  remove: (id) => request(`/api/usuarios/${id}`, { method: "DELETE" })
+  updatePassword: (id, payload) =>
+    request(`/api/usuarios/${id}/password`, { method: "PUT", body: JSON.stringify(payload) }),
+  remove: (id) => request(`/api/usuarios/${id}`, { method: "DELETE" }),
+
+  updateMe: (payload) => request("/api/usuarios/me", { method: "PUT", body: JSON.stringify(payload) }),
+  updateMyPassword: (payload) =>
+    request("/api/usuarios/me/password", { method: "PUT", body: JSON.stringify(payload) })
 };
 
 /** Responsáveis */

@@ -18,6 +18,7 @@ import AtendimentosListPage from "./pages/atendimentos/AtendimentosListPage";
 import AtendimentoFormPage from "./pages/atendimentos/AtendimentoFormPage";
 import AtendimentoViewPage from "./pages/atendimentos/AtendimentoViewPage";
 import AtendimentoBlocoPage from "./pages/atendimentos/AtendimentoBlocoPage";
+import PerfilPage from "./pages/perfil/PerfilPage";
 
 export default function App() {
   return (
@@ -33,6 +34,8 @@ export default function App() {
         }
       >
         <Route index element={<DashboardPage />} />
+
+        <Route path="/perfil" element={<PerfilPage />} />
 
         <Route path="usuarios" element={<UsersListPage />} />
         <Route path="usuarios/novo" element={<UserFormPage mode="create" />} />

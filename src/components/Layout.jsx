@@ -25,6 +25,7 @@ export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
 
   const isAdmin = user?.perfil === "ADMIN";
+  const isVet = user?.perfil === "VETERINARIO";
 
   return (
     <div className="app-shell">
@@ -49,6 +50,9 @@ export default function Layout() {
         <nav className="menu">
           <MenuItem to="/" icon="🏠" collapsed={collapsed}>Dashboard</MenuItem>
           {isAdmin && <MenuItem to="/usuarios" icon="👤" collapsed={collapsed}>Usuários</MenuItem>}
+
+          {isVet && <MenuItem to="/perfil" icon="🪪" collapsed={collapsed}>Perfil</MenuItem>}
+
           <MenuItem to="/responsaveis" icon="🧑‍🤝‍🧑" collapsed={collapsed}>Responsáveis</MenuItem>
           <MenuItem to="/animais" icon="🐴" collapsed={collapsed}>Animais</MenuItem>
           <MenuItem to="/atendimentos" icon="🩺" collapsed={collapsed}>Atendimentos</MenuItem>
