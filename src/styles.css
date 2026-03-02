@@ -233,3 +233,112 @@ form.card small {
   line-height: 1.2;
   margin-top: 2px;
 }
+
+/* Layout base */
+.app-shell {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  transition: width 180ms ease;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0,0,0,0.08);
+  padding: 12px;
+  gap: 12px;
+}
+
+.sidebar.is-collapsed {
+  width: 72px;
+}
+
+/* Topo (brand + toggle) */
+.sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.brand-text {
+  transition: opacity 120ms ease;
+}
+
+.sidebar.is-collapsed .brand-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Botão toggle */
+.sidebar-toggle {
+  padding: 6px 8px;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.menu-item .menu-icon {
+  width: 22px;
+  text-align: center;
+}
+
+.menu-item .menu-text {
+  transition: opacity 120ms ease;
+  white-space: nowrap;
+}
+
+.sidebar.is-collapsed .menu-item .menu-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Centraliza ícones quando recolhido */
+.sidebar.is-collapsed .menu-item {
+  justify-content: center;
+}
+
+/* Footer */
+.sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-user .user-name,
+.sidebar-user .user-role {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar.is-collapsed .sidebar-user {
+  display: none;
+}
