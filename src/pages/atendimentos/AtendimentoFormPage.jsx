@@ -526,7 +526,7 @@ export default function AtendimentoFormPage({ mode }) {
               <select value={form.houve_melhora} onChange={(e) => set("houve_melhora", e.target.value)}>
                 <option value="SIM">SIM</option>
                 <option value="NAO">NAO</option>
-                <option value="NAO_SE_APLICA">NAO_SE_APLICA</option>
+                <option value="NAO_SE_APLICA">NÃO SE APLICA</option>
               </select>
             </Field>
           </>

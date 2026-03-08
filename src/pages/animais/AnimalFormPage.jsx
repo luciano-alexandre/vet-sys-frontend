@@ -283,10 +283,10 @@ export default function AnimalFormPage({ mode }) {
             onChange={(e) => onChangeStatusReprodutivo(e.target.value)}
           >
             <option value="CASTRADO">CASTRADO</option>
-            <option value="NAO_CASTRADO">NAO_CASTRADO</option>
+            <option value="NAO_CASTRADO">NÃO CASTRADO</option>
             <option value="PRENHE">PRENHE</option>
             <option value="LACTANTE">LACTANTE</option>
-            <option value="NAO_INFORMADO">NAO_INFORMADO</option>
+            <option value="NAO_INFORMADO">NÃO INFORMADO</option>
           </select>
           {fieldErrors.status_reprodutivo && (
             <small className="error-text">{fieldErrors.status_reprodutivo}</small>

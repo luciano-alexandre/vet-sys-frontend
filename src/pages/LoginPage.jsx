@@ -6,8 +6,8 @@ export default function LoginPage() {
   const { login } = useAuth();
   const nav = useNavigate();
 
-  const [email, setEmail] = useState("admin@vet.local");
-  const [senha, setSenha] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
