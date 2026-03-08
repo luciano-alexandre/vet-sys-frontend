@@ -86,6 +86,11 @@ export const atendimentosApi = {
   listParticipantes: (id) => request(`/api/atendimentos/${id}/participantes`),
   addParticipante: (id, payload) =>
     request(`/api/atendimentos/${id}/participantes`, { method: "POST", body: JSON.stringify(payload) }),
+  updateParticipante: (id, participanteId, payload) =>
+    request(`/api/atendimentos/${id}/participantes/${participanteId}`, {
+      method: "PUT",
+      body: JSON.stringify(payload)
+    }),
   removeParticipante: (id, participanteId) =>
     request(`/api/atendimentos/${id}/participantes/${participanteId}`, { method: "DELETE" })
 };

@@ -211,6 +211,10 @@ export default function AtendimentoBlocoPage() {
   const [pNome, setPNome] = useState("");
   const [pPapel, setPPapel] = useState("");
   const [pObs, setPObs] = useState("");
+  const [editingPartId, setEditingPartId] = useState(null);
+  const [editNome, setEditNome] = useState("");
+  const [editPapel, setEditPapel] = useState("");
+  const [editObs, setEditObs] = useState("");
   const [error, setError] = useState("");
 
   const [concentrados, setConcentrados] = useState([]);
@@ -850,8 +854,38 @@ export default function AtendimentoBlocoPage() {
     }
   }
 
+  function startEditPart(p) {
+    setEditingPartId(p.id);
+    setEditNome(p.nome || "");
+    setEditPapel(p.papel || "");
+    setEditObs(p.observacao || "");
+  }
+
+  function cancelEditPart() {
+    setEditingPartId(null);
+    setEditNome("");
+    setEditPapel("");
+    setEditObs("");
+  }
+
+  async function saveEditPart() {
+    try {
+      if (!editingPartId) return;
+      await atendimentosApi.updateParticipante(id, editingPartId, {
+        nome: editNome,
+        papel: editPapel,
+        observacao: editObs
+      });
+      cancelEditPart();
+      setParts(await atendimentosApi.listParticipantes(id));
+    } catch (e) {
+      setError(e.message || "Erro ao atualizar participante.");
+    }
+  }
+
   async function delPart(partId) {
     await atendimentosApi.removeParticipante(id, partId);
+    if (editingPartId === partId) cancelEditPart();
     setParts(await atendimentosApi.listParticipantes(id));
   }
 
@@ -2295,6 +2329,12 @@ export default function AtendimentoBlocoPage() {
             <option value="DISCENTE">Discente</option>
             <option value="COLABORADOR">Colaborador</option>
           </select>
+
+          <input
+            placeholder="Observação (opcional)"
+            value={pObs}
+            onChange={(e) => setPObs(e.target.value)}
+          />
         </div>
 
         <div className="form-actions">
@@ -2309,6 +2349,7 @@ export default function AtendimentoBlocoPage() {
               <tr>
                 <th>Nome</th>
                 <th>Papel</th>
+                <th>Observação</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -2316,14 +2357,57 @@ export default function AtendimentoBlocoPage() {
               {parts.length ? (
                 parts.map((p) => (
                   <tr key={p.id}>
-                    <td>{p.nome}</td>
-                    <td>{p.papel}</td>
                     <td>
-                      <ConfirmButton onConfirm={() => delPart(p.id)} message="Remover participante?">
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                          Excluir
-                        </span>
-                      </ConfirmButton>
+                      {editingPartId === p.id ? (
+                        <input value={editNome} onChange={(e) => setEditNome(e.target.value)} />
+                      ) : (
+                        p.nome
+                      )}
+                    </td>
+                    <td>
+                      {editingPartId === p.id ? (
+                        <select value={editPapel} onChange={(e) => setEditPapel(e.target.value)}>
+                          <option value="">Selecione o papel</option>
+                          <option value="RESIDENTE">Residente</option>
+                          <option value="DUPLA">Dupla</option>
+                          <option value="SUPERVISAO">Supervisão</option>
+                          <option value="DISCENTE">Discente</option>
+                          <option value="COLABORADOR">Colaborador</option>
+                        </select>
+                      ) : (
+                        p.papel
+                      )}
+                    </td>
+                    <td>
+                      {editingPartId === p.id ? (
+                        <input value={editObs} onChange={(e) => setEditObs(e.target.value)} />
+                      ) : (
+                        p.observacao || "—"
+                      )}
+                    </td>
+                    <td>
+                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                        {editingPartId === p.id ? (
+                          <>
+                            <button type="button" className="btn btn-primary" onClick={saveEditPart}>
+                              Salvar
+                            </button>
+                            <button type="button" className="btn" onClick={cancelEditPart}>
+                              Cancelar
+                            </button>
+                          </>
+                        ) : (
+                          <button type="button" className="btn" onClick={() => startEditPart(p)}>
+                            Editar
+                          </button>
+                        )}
+
+                        <ConfirmButton onConfirm={() => delPart(p.id)} message="Remover participante?">
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                            Excluir
+                          </span>
+                        </ConfirmButton>
+                      </div>
                     </td>
                   </tr>
                 ))
