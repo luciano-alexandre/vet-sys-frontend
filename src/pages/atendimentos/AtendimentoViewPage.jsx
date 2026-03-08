@@ -73,6 +73,13 @@ function pick(obj, ...keys) {
   return "";
 }
 
+function assinaturaDataUrl(base64, mime) {
+  const b64 = String(base64 ?? "").trim();
+  const mt = String(mime ?? "").trim();
+  if (!b64 || !mt) return "";
+  return `data:${mt};base64,${b64}`;
+}
+
 function openPdfLikePrintWindow({ title, html }) {
   const iframe = document.createElement("iframe");
   iframe.style.position = "fixed";
@@ -117,6 +124,11 @@ function openPdfLikePrintWindow({ title, html }) {
     ".block-title { font-size: 13px; margin: 0 0 6px 0; font-weight: 700; }",
     ".hr { height: 1px; background: var(--border); margin: 10px 0; }",
     ".badge { display:inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); font-size: 11px; color: var(--muted); }",
+    ".signature-wrap { margin-top: 18px; text-align: center; break-inside: avoid; page-break-inside: avoid; }",
+    ".signature-img { max-width: 320px; max-height: 120px; width: auto; height: auto; object-fit: contain; }",
+    ".signature-line { width: 300px; max-width: 80%; margin: 10px auto 0 auto; border-top: 1px solid #222; }",
+    ".signature-caption { margin-top: 6px; font-size: 12px; }",
+    ".signature-crmv { margin-top: 2px; font-size: 11px; color: var(--muted); }",
     "@media print { .page { padding: 0; } .section { break-inside: avoid; } table { break-inside: avoid; } }"
   ].join("\n");
 
@@ -256,6 +268,18 @@ export default function AtendimentoViewPage() {
     const veterinarioCrmv = firstOf(d.veterinario_crmv, a.veterinario_crmv);
     const veterinarioEmail = firstOf(d.veterinario_email, a.veterinario_email);
     const veterinarioTelefone = firstOf(d.veterinario_telefone, a.veterinario_telefone);
+    const veterinarioAssinaturaBase64 = firstOf(
+      d.veterinario_assinatura_base64,
+      a.veterinario_assinatura_base64
+    );
+    const veterinarioAssinaturaMime = firstOf(
+      d.veterinario_assinatura_mime,
+      a.veterinario_assinatura_mime
+    );
+    const veterinarioAssinaturaDataUrl = assinaturaDataUrl(
+      veterinarioAssinaturaBase64,
+      veterinarioAssinaturaMime
+    );
 
     // Manejo Nutricional - listas
     const conc = Array.isArray(mn.concentrados) ? mn.concentrados : [];
@@ -561,6 +585,17 @@ ${renderTextarea("Comentários", mn.comentarios)}
               </table>`
         : `<div class="muted">Nenhum participante cadastrado.</div>`
       }
+      </div>
+
+      <div class="signature-wrap">
+        ${
+          veterinarioAssinaturaDataUrl
+            ? `<img class="signature-img" src="${escHtml(veterinarioAssinaturaDataUrl)}" alt="Assinatura do veterinário" />`
+            : `<div class="muted">Assinatura não cadastrada para este veterinário.</div>`
+        }
+        <div class="signature-line"></div>
+        <div class="signature-caption">${td(veterinarioNome)}</div>
+        <div class="signature-crmv">CRMV: ${td(veterinarioCrmv)}</div>
       </div>
     `;
 
