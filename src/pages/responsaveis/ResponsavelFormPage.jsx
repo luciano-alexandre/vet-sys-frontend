@@ -302,7 +302,7 @@ export default function ResponsavelFormPage({ mode }) {
     const newErrors = {};
     if (!form.nome.trim()) newErrors.nome = "Nome é obrigatório.";
     if (!isCPFValido(form.cpf)) newErrors.cpf = "CPF inválido.";
-    if (!isEmailValido(form.email)) newErrors.email = "E-mail inválido.";
+    if (form.email.trim() && !isEmailValido(form.email)) newErrors.email = "E-mail inválido.";
     if (!isTelefoneValido(form.telefone)) newErrors.telefone = "Telefone inválido.";
     if (!isCepValido(form.cep)) newErrors.cep = "CEP inválido.";
     if (!ufId) newErrors.uf = "UF é obrigatória.";
@@ -321,7 +321,7 @@ export default function ResponsavelFormPage({ mode }) {
       const payload = {
         nome: form.nome.trim(),
         cpf: onlyDigits(form.cpf),
-        email: form.email.trim().toLowerCase(),
+        email: form.email.trim() ? form.email.trim().toLowerCase() : null,
         telefone: onlyDigits(form.telefone),
         cep: onlyDigits(form.cep),
         logradouro: form.logradouro.trim(),
